@@ -19,9 +19,9 @@ if(!isset($id)) {
 
 if (!isset($_COOKIE['baskets'])) {
     setcookie('baskets', '[]', time() + 60 * 60 * 24, '../');
-    $baskets = '[]';
+    $baskets = [];
 } else {
-    $baskets = $_COOKIE['baskets'];
+    $baskets = json_decode($_COOKIE['baskets'], true);
 }
 
 ?>
@@ -125,7 +125,7 @@ if (!isset($_COOKIE['baskets'])) {
   <?php include "../footer.php"; ?>
 
   <script>
-  var baskets = <?php echo $baskets; ?>;
+  var baskets = <?php echo json_encode($baskets); ?>;
 
   function basket() {
     var num = Number($("#_number").val());
